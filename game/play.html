@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mine Inc.</title>
+    <link rel="stylesheet" href="game.css">   
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body class="crt">
+    <div class="header">
+        <h1 class="tittle-wip"><a href="/index.html">Mine Inc.</a></h1>
+    </div>
+    <div class="nav-bar">
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="#">Learn</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Roadmap</a></li>
+        </ul>
+    </div>
+    <section class="layout">
+        <div class="game">
+            <button id="start" class="buttoncrt">Start</button> <!-- This button will start the game -->
+            <table class="table">
+                <tr>
+                    <th>Ores</th>
+                    <th>Total Ores (Tonnes)</th>
+                    <th>Auto-Miners</th>
+                    <th>Auto-Smelters</th>
+                    <th>Smelt</th>
+                    <th>Mine</th> <!-- New column for mining individual ores -->
+                    <th>Sell</th> <!-- New column for selling ingots -->
+                    <td>Total Ingots</td>
+                </tr>
+                <tr>
+                    <td>Copper</td>
+                    <td id="copper">0</td>
+                    <td id="minerDronesCopper">0</td>
+                    <td id="autoSmeltersCopper">0</td>
+                    <td><button id="smeltcopper" class="buttoncrt">Smelt Ore into Ingots</button>
+                    <td><button id="minecopper" class="buttoncrt">Mine Copper</button></td> <!-- Button for mining rocks -->
+                    <td><button id="sellcopper" class="buttoncrt">Sell</button></td> <!-- Button for selling rocks -->
+                    <td id="ingotscopper">0</td>
+                </td>
+                <tr>
+                    <td>Iron</td>
+                    <td id="iron">0</td>
+                    <td id="minerDronesIron">0</td>
+                    <td id="autoSmeltersIron">0</td>
+                    <td><button id="smeltiron" class="buttoncrt">Iron</button>
+                    <td><button id="mineiron" class="buttoncrt">Mine Iron</button></td> <!-- Button for mining iron -->
+                    <td><button id="selliron" class="buttoncrt">Sell</button></td> <!-- Button for selling iron -->
+                    <td id="ingotsiron">0</td>
+                </tr>
+                <tr>
+                    <td>Gold</td>
+                    <td id="gold">0</td>
+                    <td id="minerDronesGold">0</td>
+                    <td id="autoSmeltersGold">0</td>
+                    <td><button id="smeltgold" class="buttoncrt">Gold</button>
+                    <td><button id="minegold" class="buttoncrt">Mine Gold</button></td> <!-- Button for mining gold -->
+                    <td><button id="sellgold" class="buttoncrt">Sell</button></td> <!-- Button for selling gold -->
+                    <td id="ingotsgold">0</td>
+                </tr>
+                <tr>
+                    <td>Platinum</td>
+                    <td id="platinum">0</td>
+                    <td id="minerDronesPlatinum">0</td>
+                    <td id="autoSmeltersPlatinum">0</td>
+                    <td><button id="smeltplatinum" class="buttoncrt">Platinum</button>
+                    <td><button id="mineplatinum" class="buttoncrt">Mine Platinum</button></td> <!-- Button for mining platinum -->
+                    <td><button id="sellplatinum" class="buttoncrt">Sell</button></td> <!-- Button for selling platinum -->
+                    <td id="ingotsplatinum">0</td>
+                </tr>
+                <tr>
+                    <td>Silicon</td>
+                    <td id="silicon">0</td>
+                    <td id="minerDronesSilicon">0</td>
+                    <td id="autoSmeltersSilicon">0</td>
+                    <td><button id="smeltsilicon" class="buttoncrt">Silicon</button>
+                    <td><button id="minesilicon" class="buttoncrt">Mine Silicon</button></td> <!-- Button for mining silicon -->
+                    <td><button id="sellsilicon" class="buttoncrt">Sell</button></td> <!-- Button for selling silicon -->
+                    <td id="ingotssilicon">0</td>
+                </tr>
+            </table>
+            <div class="purchase">
+                <button id="purchaseMinerDroneCopper" class="buttoncrt">Assign Miner Drone (Copper)</button>
+                <button id="purchaseMinerDroneIron" class="buttoncrt">Assign Miner Drone (Iron)</button>
+                <button id="purchaseMinerDroneGold" class="buttoncrt">Assign Miner Drone (Gold)</button>
+                <button id="purchaseMinerDronePlatinum" class="buttoncrt">Assign Miner Drone (Platinum)</button>
+                <button id="purchaseMinerDroneSilicon" class="buttoncrt">Assign Miner Drone (Silicon)</button>
+                <button id="purchaseAutoSmelterCopper" class="buttoncrt">Assign Auto-Smelter (Copper)</button>
+                <button id="purchaseAutoSmelterIron" class="buttoncrt">Assign Auto-Smelter (Iron)</button>
+                <button id="purchaseAutoSmelterGold" class="buttoncrt">Assign Auto-Smelter (Gold)</button>
+                <button id="purchaseAutoSmelterPlatinum" class="buttoncrt">Assign Auto-Smelter (Platinum)</button>
+                <button id="purchaseAutoSmelterSilicon" class="buttoncrt">Assign Auto-Smelter (Silicon)</button>
+            </div>
+        </div>
+    </section>
+    <div class="footer">
+
+    </div>
+    <script src="/game/main.js"></script>
+</body>
+</html>
