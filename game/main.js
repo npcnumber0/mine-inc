@@ -7,31 +7,11 @@ document.addEventListener('DOMContentLoaded', function() {
         silicon: { ore: 0, ingot: 0, minerDrones: 0, autoSmelters: 0 },
     };
 
-    const dollars = 0;
+    let dollars = { amount: 0 };
     const power = { capacity: 100, generation: 10, consumed: 0, solarPanels: 0, solarOutput: 5 };
 
     const costs = {
         ingotPrices: { copper: 5, iron: 10, gold: 20, platinum: 50, silicon: 15 },
-        upgradeCosts: {
-            minerDrones: { cost: 10, increaseRate: 1.1 },
-            autoSmelters: { cost: 15, increaseRate: 1.1 },
-            generator: { cost: 50, increaseRate: 1.2 },
-            solarPanels: { cost: 30, increaseRate: 1.15 }
-        }
-    };
-
-    // Ensure buttons have correct IDs and are present in your HTML
-    document.getElementById('mineX10copper').addEventListener('click', () => mineOreX10('copper'));
-    document.getElementById('sellAllcopper').addEventListener('click', () => sellAllIngots('copper'));
-
-    const costs = {
-        ingotPrices: {
-            copper: 5,   // Example price per copper ingot
-            iron: 10,    // Example price per iron ingot
-            gold: 20,    // Example price per gold ingot
-            platinum: 50, // Example price per platinum ingot
-            silicon: 15  // Example price per silicon ingot
-        },
         upgradeCosts: {
             minerDrones: { cost: 10, increaseRate: 1.1 },
             autoSmelters: { cost: 15, increaseRate: 1.1 },
@@ -47,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('minerDrones' + type.charAt(0).toUpperCase() + type.slice(1)).textContent = resources[type].minerDrones;
             document.getElementById('autoSmelters' + type.charAt(0).toUpperCase() + type.slice(1)).textContent = resources[type].autoSmelters;
         });
-        document.getElementById('dollars').textContent = dollars.amount.toFixed(2); // Ensure this line is correct
+        document.getElementById('dollars').textContent = dollars.amount.toFixed(2);
         document.getElementById('power').textContent = `Generated: ${power.generation + power.solarPanels * power.solarOutput}, Consumed: ${power.consumed}`;
     };    
 
@@ -110,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function mineOreX10(resourceType) {
         for (let i = 0; i < 10; i++) {
-            resources[resourceType].ore += (resources[resourceType].minerDrones ? resources[resourceType].minerDrones * 5 : 5); // Ensure operation even without drones
+            resources[resourceType].ore += (resources[resourceType].minerDrones ? resources[resourceType].minerDrones * 5 : 5);
         }
         updateUI();
     };
@@ -118,13 +98,16 @@ document.addEventListener('DOMContentLoaded', function() {
     function sellAllIngots(resourceType) {
         if (resources[resourceType].ingot > 0) {
             const totalSale = resources[resourceType].ingot * costs.ingotPrices[resourceType];
-            dollars += totalSale; // Update the dollar amount
+            dollars.amount += totalSale;
             resources[resourceType].ingot = 0;
-            updateUI(); // Immediately update the UI
+            updateUI();
         } else {
             console.log("No ingots to sell.");
         }
-    }    
+    };   
+
+    document.getElementById('mineX10copper').addEventListener('click', () => mineOreX10('copper'));
+    document.getElementById('sellAllcopper').addEventListener('click', () => sellAllIngots('copper'));
 
     setInterval(() => {
         updatePowerUsage(); // First, update the power usage to reflect current consumption
@@ -134,7 +117,8 @@ document.addEventListener('DOMContentLoaded', function() {
             Object.keys(resources).forEach(type => {
                 // Perform mining operations
                 resources[type].ore += resources[type].minerDrones * 5; // Each drone mines 5 units of ore
-    
+                updatePowerUsage();
+                performMiningAndSmelting();
                 // Perform smelting operations
                 const possibleSmelts = Math.floor(resources[type].ore / 5); // Calculate how many smelting operations can be done
                 const smeltsToPerform = Math.min(possibleSmelts, resources[type].autoSmelters); // Limit smelting by the number of auto-smelters
