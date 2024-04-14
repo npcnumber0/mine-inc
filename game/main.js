@@ -20,6 +20,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
+    const costs = {
+        ingotPrices: {
+            copper: 5,   // Example price per copper ingot
+            iron: 10,    // Example price per iron ingot
+            gold: 20,    // Example price per gold ingot
+            platinum: 50, // Example price per platinum ingot
+            silicon: 15  // Example price per silicon ingot
+        },
+        upgradeCosts: {
+            minerDrones: { cost: 10, increaseRate: 1.1 },
+            autoSmelters: { cost: 15, increaseRate: 1.1 },
+            generator: { cost: 50, increaseRate: 1.2 },
+            solarPanels: { cost: 30, increaseRate: 1.15 }
+        }
+    };
+    
+
     function updateUI() {
         Object.keys(resources).forEach(type => {
             document.getElementById(type).textContent = resources[type].ore;
@@ -77,6 +94,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         updateUI();
     }
+
+    function sellIngots(resourceType) {
+        if (resources[resourceType].ingot > 0) {
+            resources[resourceType].ingot--; // Decrement the number of ingots
+            dollars.amount += costs.ingotPrices[resourceType]; // Add the value of one ingot to the dollar balance
+            updateUI(); // Update the user interface to reflect changes
+        } else {
+            console.log("No ingots available to sell."); // Log or alert the user if no ingots are available to sell
+        }
+    } 
 
     setInterval(() => {
         updatePowerUsage(); // First, update the power usage to reflect current consumption
