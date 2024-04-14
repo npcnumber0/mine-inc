@@ -1,3 +1,24 @@
+const resources = {
+    copper: { ore: 0, ingot: 0, minerDrones: 0, autoSmelters: 0 },
+    iron: { ore: 0, ingot: 0, minerDrones: 0, autoSmelters: 0 },
+    gold: { ore: 0, ingot: 0, minerDrones: 0, autoSmelters: 0 },
+    platinum: { ore: 0, ingot: 0, minerDrones: 0, autoSmelters: 0 },
+    silicon: { ore: 0, ingot: 0, minerDrones: 0, autoSmelters: 0 },
+};
+
+let dollars = { amount: 0 };
+const power = { capacity: 100, generation: 10, consumed: 0, solarPanels: 0, solarOutput: 5 };
+
+const costs = {
+    ingotPrices: { copper: 5, iron: 10, gold: 20, platinum: 50, silicon: 15 },
+    upgradeCosts: {
+        minerDrones: { cost: 10, increaseRate: 1.1 },
+        autoSmelters: { cost: 15, increaseRate: 1.1 },
+        generator: { cost: 50, increaseRate: 1.2 },
+        solarPanels: { cost: 30, increaseRate: 1.15 }
+    }
+};
+
 document.addEventListener('DOMContentLoaded', function() {
 
 // Event listener for purchasing solar panels
@@ -38,10 +59,10 @@ document.getElementById('sellsilicon').addEventListener('click', () => sellOre('
 
 // Event listeners for selling all ingots
 document.getElementById('sellAllcopper').addEventListener('click', () => sellAllIngots('copper'));
-document.getElementById('sellAlliron').addEventListener('click', () => sellAllIngots('iron'));
+/*document.getElementById('sellAlliron').addEventListener('click', () => sellAllIngots('iron'));
 document.getElementById('sellAllgold').addEventListener('click', () => sellAllIngots('gold'));
 document.getElementById('sellAllplatinum').addEventListener('click', () => sellAllIngots('platinum'));
-document.getElementById('sellAllsilicon').addEventListener('click', () => sellAllIngots('silicon'));
+document.getElementById('sellAllsilicon').addEventListener('click', () => sellAllIngots('silicon'));*/
 
 // Event listeners for mining x10 ores
 document.getElementById('mineX10copper').addEventListener('click', () => mineOreX10('copper'));
@@ -49,27 +70,6 @@ document.getElementById('mineX10iron').addEventListener('click', () => mineOreX1
 document.getElementById('mineX10gold').addEventListener('click', () => mineOreX10('gold'));
 document.getElementById('mineX10platinum').addEventListener('click', () => mineOreX10('platinum'));
 document.getElementById('mineX10silicon').addEventListener('click', () => mineOreX10('silicon'));
-
-const resources = {
-    copper: { ore: 0, ingot: 0, minerDrones: 0, autoSmelters: 0 },
-    iron: { ore: 0, ingot: 0, minerDrones: 0, autoSmelters: 0 },
-    gold: { ore: 0, ingot: 0, minerDrones: 0, autoSmelters: 0 },
-    platinum: { ore: 0, ingot: 0, minerDrones: 0, autoSmelters: 0 },
-    silicon: { ore: 0, ingot: 0, minerDrones: 0, autoSmelters: 0 },
-};
-
-let dollars = { amount: 0 };
-const power = { capacity: 100, generation: 10, consumed: 0, solarPanels: 0, solarOutput: 5 };
-
-const costs = {
-    ingotPrices: { copper: 5, iron: 10, gold: 20, platinum: 50, silicon: 15 },
-    upgradeCosts: {
-        minerDrones: { cost: 10, increaseRate: 1.1 },
-        autoSmelters: { cost: 15, increaseRate: 1.1 },
-        generator: { cost: 50, increaseRate: 1.2 },
-        solarPanels: { cost: 30, increaseRate: 1.15 }
-    }
-};
 
 function updateUI() {
     Object.keys(resources).forEach(type => {
