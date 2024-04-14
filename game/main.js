@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
+    document.getElementById('mineX10copper').addEventListener('click', () => mineOreX10('copper'));
+    document.getElementById('sellAllcopper').addEventListener('click', () => sellAllIngots('copper'));    
+
     const costs = {
         ingotPrices: {
             copper: 5,   // Example price per copper ingot
@@ -103,7 +106,25 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             console.log("No ingots available to sell."); // Log or alert the user if no ingots are available to sell
         }
-    } 
+    }
+
+    function sellAllIngots(resourceType) {
+        if (resources[resourceType].ingot > 0) {
+            const totalSale = resources[resourceType].ingot * costs.ingotPrices[resourceType];
+            dollars.amount += totalSale;
+            resources[resourceType].ingot = 0; // Reset ingots to zero after selling
+            updateUI();
+        } else {
+            console.log("No ingots to sell.");
+        }
+    }    
+
+    function mineOreX10(resourceType) {
+        for (let i = 0; i < 10; i++) {
+            resources[resourceType].ore += resources[resourceType].minerDrones * 5; // Adjust the multiplier as needed based on your game mechanics
+        }
+        updateUI();
+    }    
 
     setInterval(() => {
         updatePowerUsage(); // First, update the power usage to reflect current consumption
