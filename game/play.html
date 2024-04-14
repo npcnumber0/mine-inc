@@ -22,6 +22,17 @@
     <section class="layout">
         <div class="game">
             <button id="start" class="buttoncrt">Start</button> <!-- This button will start the game -->
+            <div class="game-info">
+                <p>Dollars: <span id="dollars">0</span></p>
+            </div>
+            <div class="power-info">
+                <p>Power: <span id="power">Generated: 10, Consumed: 0</span></p>
+                <button id="upgradeGenerator" class="buttoncrt">Upgrade Power Generator</button>
+            </div>
+            <div class="solar-panel-info">
+                <p>Solar Panels: <span id="solarPanels">0</span> producing <span id="solarOutput">0</span> units of power</p>
+                <button id="purchaseSolarPanel" class="buttoncrt">Purchase Solar Panel</button>
+            </div>                         
             <table class="table">
                 <tr>
                     <th>Ores</th>
