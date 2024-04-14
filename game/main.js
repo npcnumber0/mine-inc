@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
         silicon: { ore: 0, ingot: 0, minerDrones: 0, autoSmelters: 0 },
     };
 
-    const dollars = { amount: 0 };
+    const dollars = 0;
     const power = { capacity: 100, generation: 10, consumed: 0, solarPanels: 0, solarOutput: 5 };
 
     const costs = {
