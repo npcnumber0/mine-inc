@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function sellIngots(resourceType) {
         if (resources[resourceType].ingot > 0) {
             resources[resourceType].ingot--; // Decrement the number of ingots
-            dollars.amount += costs.ingotPrices[resourceType]; // Add the value of one ingot to the dollar balance
+            dollars += costs.ingotPrices[resourceType]; // Add the value of one ingot to the dollar balance
             updateUI(); // Update the user interface to reflect changes
         } else {
             console.log("No ingots available to sell."); // Log or alert the user if no ingots are available to sell
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function sellAllIngots(resourceType) {
         if (resources[resourceType].ingot > 0) {
             const totalSale = resources[resourceType].ingot * costs.ingotPrices[resourceType];
-            dollars.amount += totalSale; // Update the dollar amount
+            dollars += totalSale; // Update the dollar amount
             resources[resourceType].ingot = 0;
             updateUI(); // Immediately update the UI
         } else {
