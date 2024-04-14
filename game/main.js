@@ -47,9 +47,9 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('minerDrones' + type.charAt(0).toUpperCase() + type.slice(1)).textContent = resources[type].minerDrones;
             document.getElementById('autoSmelters' + type.charAt(0).toUpperCase() + type.slice(1)).textContent = resources[type].autoSmelters;
         });
-        document.getElementById('dollars').textContent = dollars.amount.toFixed(2);
+        document.getElementById('dollars').textContent = dollars.amount.toFixed(2); // Ensure this line is correct
         document.getElementById('power').textContent = `Generated: ${power.generation + power.solarPanels * power.solarOutput}, Consumed: ${power.consumed}`;
-    };
+    };    
 
     function purchaseSolarPanel() {
         if (dollars.amount >= costs.upgradeCosts.solarPanels.cost) {
@@ -118,13 +118,13 @@ document.addEventListener('DOMContentLoaded', function() {
     function sellAllIngots(resourceType) {
         if (resources[resourceType].ingot > 0) {
             const totalSale = resources[resourceType].ingot * costs.ingotPrices[resourceType];
-            dollars.amount += totalSale;
+            dollars.amount += totalSale; // Update the dollar amount
             resources[resourceType].ingot = 0;
-            updateUI();
+            updateUI(); // Immediately update the UI
         } else {
             console.log("No ingots to sell.");
         }
-    }; 
+    }    
 
     setInterval(() => {
         updatePowerUsage(); // First, update the power usage to reflect current consumption
