@@ -20,8 +20,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
+    // Ensure buttons have correct IDs and are present in your HTML
     document.getElementById('mineX10copper').addEventListener('click', () => mineOreX10('copper'));
-    document.getElementById('sellAllcopper').addEventListener('click', () => sellAllIngots('copper'));    
+    document.getElementById('sellAllcopper').addEventListener('click', () => sellAllIngots('copper'));
 
     const costs = {
         ingotPrices: {
@@ -38,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
             solarPanels: { cost: 30, increaseRate: 1.15 }
         }
     };
-    
 
     function updateUI() {
         Object.keys(resources).forEach(type => {
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         document.getElementById('dollars').textContent = dollars.amount.toFixed(2);
         document.getElementById('power').textContent = `Generated: ${power.generation + power.solarPanels * power.solarOutput}, Consumed: ${power.consumed}`;
-    }
+    };
 
     function purchaseSolarPanel() {
         if (dollars.amount >= costs.upgradeCosts.solarPanels.cost) {
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             console.log("Not enough dollars to purchase solar panels.");
         }
-    }
+    };
 
     function updatePowerUsage() {
         let dronePowerUse = 1; // power used by one miner drone per cycle
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (power.consumed > (power.generation + power.solarPanels * power.solarOutput)) {
             console.warn('Power shortage! Reduce consumption or upgrade power sources.');
         }
-    }
+    };
     
     function performMiningAndSmelting() {
         if (power.consumed <= (power.generation + power.solarPanels * power.solarOutput)) {
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.warn('Insufficient power to operate all devices.');
         }
         updateUI();
-    }
+    };
 
     function sellIngots(resourceType) {
         if (resources[resourceType].ingot > 0) {
@@ -106,25 +106,25 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             console.log("No ingots available to sell."); // Log or alert the user if no ingots are available to sell
         }
-    }
+    };
+
+    function mineOreX10(resourceType) {
+        for (let i = 0; i < 10; i++) {
+            resources[resourceType].ore += (resources[resourceType].minerDrones ? resources[resourceType].minerDrones * 5 : 5); // Ensure operation even without drones
+        }
+        updateUI();
+    };
 
     function sellAllIngots(resourceType) {
         if (resources[resourceType].ingot > 0) {
             const totalSale = resources[resourceType].ingot * costs.ingotPrices[resourceType];
             dollars.amount += totalSale;
-            resources[resourceType].ingot = 0; // Reset ingots to zero after selling
+            resources[resourceType].ingot = 0;
             updateUI();
         } else {
             console.log("No ingots to sell.");
         }
-    }    
-
-    function mineOreX10(resourceType) {
-        for (let i = 0; i < 10; i++) {
-            resources[resourceType].ore += resources[resourceType].minerDrones * 5; // Adjust the multiplier as needed based on your game mechanics
-        }
-        updateUI();
-    }    
+    }; 
 
     setInterval(() => {
         updatePowerUsage(); // First, update the power usage to reflect current consumption
