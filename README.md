@@ -13,5 +13,5 @@ A basic incremental game, minimal graphics, but allows to quite the expandabilit
 
 ## Link
 
-Site Will be g
-https://alce.dev
+Not hosted yet.
+More info at https://alce.dev
